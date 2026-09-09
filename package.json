@@ -1,5 +1,5 @@
 {
-  "name": "diplomatie-gouv",
+  "name": "infrastructure-gouv",
   "version": "1.0.0",
   "description": "Open platform for Astoria's foreign policy, diplomatic relations, treaties, and international affairs.",
   "private": true,
@@ -68,7 +68,7 @@
   "packageManager": "pnpm@8.15.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/codegouvaor/diplomatie.git"
+    "url": "https://github.com/codegouvaor/infrastructure.git"
   },
   "keywords": [
     "news",
@@ -80,14 +80,14 @@
   ],
   "author": {
     "name": "Astoria Government Development Team",
-    "email": "developer@diplomatie.gouv.aor",
-    "url": "https://diplomatie.gouv.aor"
+    "email": "developer@infra.gouv.aor",
+    "url": "https://infra.gouv.aor"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/codegouvaor/diplomatie/issues"
+    "url": "https://github.com/codegouvaor/infrastructure/issues"
   },
-  "homepage": "https://github.com/codegouvaor/diplomatie#readme",
+  "homepage": "https://github.com/codegouvaor/infrastructure#readme",
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix --quiet",
