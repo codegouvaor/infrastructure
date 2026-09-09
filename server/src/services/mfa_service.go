@@ -10,10 +10,10 @@ import (
 	"time"
 
 	"github.com/pquerna/otp/totp"
-	"github.com/codegouvaor/diplomatie/server/src/config"
-	"github.com/codegouvaor/diplomatie/server/src/interfaces"
-	"github.com/codegouvaor/diplomatie/server/src/models"
-	"github.com/codegouvaor/diplomatie/server/src/utils"
+	"github.com/codegouvaor/infrastructure/server/src/config"
+	"github.com/codegouvaor/infrastructure/server/src/interfaces"
+	"github.com/codegouvaor/infrastructure/server/src/models"
+	"github.com/codegouvaor/infrastructure/server/src/utils"
 )
 
 type MfaService struct {

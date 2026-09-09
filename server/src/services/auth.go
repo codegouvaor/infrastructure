@@ -6,9 +6,9 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/codegouvaor/diplomatie/server/src/config"
-	"github.com/codegouvaor/diplomatie/server/src/interfaces"
-	"github.com/codegouvaor/diplomatie/server/src/utils"
+	"github.com/codegouvaor/infrastructure/server/src/config"
+	"github.com/codegouvaor/infrastructure/server/src/interfaces"
+	"github.com/codegouvaor/infrastructure/server/src/utils"
 )
 
 type JWTIdentityProvider struct {

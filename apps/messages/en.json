@@ -1,0 +1,518 @@
+{
+  "brand": {
+    "republicName": "Republic of Astoria"
+  },
+  "meta": {
+    "defaultTitle": "Ministry of Infrastructure and Digital Affairs",
+    "suffix": "Republic of Astoria",
+    "description": "The official portal of the Ministry of Infrastructure and Digital Affairs of the Republic of Astoria: infrastructure, housing, energy, mobility, digital and territories.",
+    "searchPlaceholder": "Search the portal"
+  },
+  "common": {
+    "skipToContent": "Skip to content",
+    "skipToFooter": "Skip to footer",
+    "backToTop": {
+      "ariaLabel": "Back to top"
+    }
+  },
+  "header": {
+    "homeTitle": "Home — Ministry of Infrastructure and Digital Affairs",
+    "serviceTitle": "Ministry of Infrastructure and Digital Affairs",
+    "serviceTagline": "The physical and digital foundation of the Republic",
+    "myGouv": "My Space",
+    "accountLabel": "My account",
+    "logoutLink": "Sign out",
+    "account": {
+      "profile": "My profile",
+      "settings": "My settings"
+    }
+  },
+  "nav": {
+    "primary": {
+      "infrastructures": "Infrastructure",
+      "logement": "Housing",
+      "energie": "Energy",
+      "mobilite": "Mobility",
+      "numerique": "Digital",
+      "territoires": "Territories"
+    },
+    "panel": {
+      "infrastructures": {
+        "title": "Infrastructure",
+        "text": "The Ministry sets and implements the policy for building, maintaining and modernising the Nation's physical infrastructure, from networks to major projects.",
+        "allLink": "All about infrastructure",
+        "construction": {
+          "title": "Construction",
+          "normes": "Construction standards",
+          "marches": "Public procurement",
+          "constructionPublique": "Public construction",
+          "securite": "Infrastructure safety"
+        },
+        "reseaux": {
+          "title": "Networks",
+          "reseauxNationaux": "National networks",
+          "eau": "Water",
+          "assainissement": "Sanitation",
+          "reseauxEnergetiques": "Energy networks"
+        },
+        "patrimoine": {
+          "title": "Public estate",
+          "patrimoinePublic": "Public estate",
+          "batimentsPublics": "Public buildings",
+          "entretien": "Maintenance",
+          "modernisation": "Modernisation"
+        },
+        "grandsProjets": {
+          "title": "Major projects",
+          "projetsNationaux": "National projects",
+          "projetsEnCours": "Ongoing projects",
+          "projetsRealises": "Completed projects",
+          "appelsAProjets": "Calls for projects"
+        }
+      },
+      "logement": {
+        "title": "Housing",
+        "text": "Housing policy, construction, renovation and public housing: giving every Astorian a decent, safe and affordable home.",
+        "allLink": "All about housing",
+        "habitat": {
+          "title": "Housing",
+          "politiqueLogement": "Housing policy",
+          "accession": "Home ownership",
+          "collectif": "Collective housing",
+          "individuel": "Individual housing"
+        },
+        "construction": {
+          "title": "Construction",
+          "constructionNeuve": "New housing construction",
+          "normesHabitat": "Housing standards",
+          "urbanismeResidentiel": "Residential planning",
+          "promoteurs": "Developers and operators"
+        },
+        "renovation": {
+          "title": "Renovation",
+          "renovationEnergetique": "Energy renovation",
+          "rehabilitation": "Rehabilitation",
+          "adaptationLogements": "Home adaptation",
+          "performanceBatiments": "Building performance"
+        },
+        "logementPublic": {
+          "title": "Public housing",
+          "logementSocial": "Social housing",
+          "parcPublic": "Public housing stock",
+          "attribution": "Allocation",
+          "operateursPublics": "Public operators"
+        }
+      },
+      "energie": {
+        "title": "Energy",
+        "text": "Delivering safe, affordable and decarbonised energy production and supply in the service of national sovereignty.",
+        "allLink": "All about energy",
+        "electricite": {
+          "title": "Electricity",
+          "productionElectrique": "Electricity generation",
+          "reseauElectrique": "Power grid",
+          "distribution": "Distribution",
+          "securiteEnergetique": "Energy security"
+        },
+        "reseaux": {
+          "title": "Networks",
+          "reseauxNationaux": "National networks",
+          "interconnexions": "Interconnections",
+          "stockage": "Storage",
+          "infrastructuresCritiques": "Critical infrastructure"
+        },
+        "production": {
+          "title": "Generation",
+          "nucleaire": "Nuclear",
+          "renouvelables": "Renewables",
+          "hydraulique": "Hydropower",
+          "autresSources": "Other sources"
+        },
+        "transition": {
+          "title": "Transition",
+          "transitionEnergetique": "Energy transition",
+          "decarbonation": "Decarbonisation",
+          "efficaciteEnergetique": "Energy efficiency",
+          "innovation": "Innovation"
+        }
+      },
+      "mobilite": {
+        "title": "Mobility",
+        "text": "Connecting people and territories through safe, efficient and sustainable transport networks.",
+        "allLink": "All about mobility",
+        "routier": {
+          "title": "Road",
+          "routesNationales": "National roads",
+          "autoroutes": "Motorways",
+          "ouvragesArt": "Bridges and structures",
+          "entretienRoutier": "Road maintenance"
+        },
+        "ferroviaire": {
+          "title": "Rail",
+          "reseauFerroviaire": "Rail network",
+          "gares": "Stations",
+          "transportFerroviaire": "Rail transport",
+          "modernisation": "Modernisation"
+        },
+        "transports": {
+          "title": "Transport",
+          "transportsPublics": "Public transport",
+          "mobiliteUrbaine": "Urban mobility",
+          "mobiliteRegionale": "Regional mobility",
+          "intermodalite": "Intermodality"
+        },
+        "aerienMaritime": {
+          "title": "Air & maritime",
+          "aeroports": "Airports",
+          "ports": "Ports",
+          "transportMaritime": "Maritime transport",
+          "transportAerien": "Air transport"
+        }
+      },
+      "numerique": {
+        "title": "Digital",
+        "text": "Treating digital as true national infrastructure: connectivity, digital infrastructure, public services and technological sovereignty.",
+        "allLink": "All about digital",
+        "connectivite": {
+          "title": "Connectivity",
+          "tresHautDebit": "Ultra-fast broadband",
+          "fibre": "Fibre",
+          "reseauxMobiles": "Mobile networks",
+          "couvertureTerritoriale": "Nationwide coverage"
+        },
+        "infrastructuresNumeriques": {
+          "title": "Digital infrastructure",
+          "dataCenters": "Data centres",
+          "cloudGouvernemental": "Government cloud",
+          "reseauxPublics": "Public networks",
+          "hebergement": "Hosting"
+        },
+        "servicesPublics": {
+          "title": "Public services",
+          "identiteNumerique": "Digital identity",
+          "interoperabilite": "Interoperability",
+          "apiGouvernementales": "Government APIs",
+          "plateformesPubliques": "Public platforms"
+        },
+        "donneesTechnologies": {
+          "title": "Data & technology",
+          "donneesPubliques": "Public data",
+          "intelligenceArtificielle": "Artificial intelligence",
+          "standardsNumeriques": "Digital standards",
+          "souveraineteTechnologique": "Technological sovereignty"
+        }
+      },
+      "territoires": {
+        "title": "Territories",
+        "text": "Shaping the territories, safeguarding water resources and strengthening the Nation's resilience to risk.",
+        "allLink": "All about territories",
+        "amenagement": {
+          "title": "Planning",
+          "amenagementTerritoire": "Regional development",
+          "urbanisme": "Urban planning",
+          "planification": "Territorial planning",
+          "developpementRegional": "Regional development"
+        },
+        "eau": {
+          "title": "Water",
+          "gestionEau": "Water management",
+          "ressourcesHydriques": "Water resources",
+          "distribution": "Supply",
+          "preventionRisques": "Risk prevention"
+        },
+        "environnement": {
+          "title": "Environment",
+          "infrastructuresDurables": "Sustainable infrastructure",
+          "biodiversite": "Biodiversity",
+          "transitionTerritoriale": "Regional transition",
+          "performanceEnvironnementale": "Environmental performance"
+        },
+        "resilience": {
+          "title": "Resilience",
+          "resilienceTerritoriale": "Territorial resilience",
+          "risquesNaturels": "Natural risks",
+          "continuiteServices": "Continuity of services",
+          "infrastructuresCritiques": "Critical infrastructure"
+        }
+      }
+    }
+  },
+  "footer": {
+    "contentDescription": "The official portal of the Ministry of Infrastructure and Digital Affairs of the Republic of Astoria.",
+    "columns": {
+      "infrastructures": {
+        "title": "Infrastructure"
+      },
+      "logement": {
+        "title": "Housing"
+      },
+      "energie": {
+        "title": "Energy"
+      },
+      "mobilite": {
+        "title": "Mobility"
+      },
+      "numerique": {
+        "title": "Digital"
+      },
+      "territoires": {
+        "title": "Territories"
+      }
+    },
+    "bottom": {
+      "contact": "Contact",
+      "planDuPortail": "Sitemap",
+      "documentsOpposables": "Legal documents",
+      "privacy": "Privacy",
+      "cookies": "Cookie management",
+      "publications": "Official publications"
+    },
+    "license": "Unless otherwise stated, all content on this site is available under the <link>APSL licence</link>."
+  },
+  "stayInTouch": {
+    "newsletter": {
+      "title": "Stay informed",
+      "desc": "Receive the latest news from the Ministry of Infrastructure and Digital Affairs every month.",
+      "label": "Your email address",
+      "placeholder": "e.g. firstname.lastname@example.aor",
+      "submit": "Subscribe",
+      "invalidEmail": "Please enter a valid email address.",
+      "hint": "You can unsubscribe at any time.",
+      "success": "Your subscription has been recorded."
+    },
+    "follow": {
+      "title": "Follow the Ministry",
+      "items": {
+        "x": "Follow the Ministry on X",
+        "facebook": "Follow the Ministry on Facebook",
+        "linkedin": "Follow the Ministry on LinkedIn",
+        "instagram": "Follow the Ministry on Instagram",
+        "threads": "Follow the Ministry on Threads"
+      }
+    }
+  },
+  "home": {
+    "metaTitle": "Home — Ministry of Infrastructure and Digital Affairs",
+    "hero": {
+      "kicker": "Ministry of Infrastructure and Digital Affairs",
+      "title": "Building, connecting and advancing Astoria.",
+      "lead": "The Ministry of Infrastructure and Digital Affairs designs, coordinates and supports the infrastructure that lets the Republic operate today and prepare for tomorrow.",
+      "ctaProjects": "Explore the projects",
+      "ctaPolicies": "Our public policies"
+    },
+    "domains": {
+      "kicker": "Working across every field",
+      "title": "Six domains for the Republic",
+      "lead": "From roads to tomorrow’s networks, the Ministry operates across the whole physical and digital infrastructure of the country.",
+      "items": {
+        "infrastructures": {
+          "desc": "Build, maintain and modernise the Nation’s infrastructure."
+        },
+        "logement": {
+          "desc": "Deliver accessible, sustainable and well-suited housing."
+        },
+        "energie": {
+          "desc": "Guarantee safe, accessible and resilient energy."
+        },
+        "mobilite": {
+          "desc": "Connect citizens and territories."
+        },
+        "numerique": {
+          "desc": "Develop the Republic’s digital infrastructure."
+        },
+        "territoires": {
+          "desc": "Shape sustainable, connected and resilient territories."
+        }
+      }
+    },
+    "projects": {
+      "kicker": "Sites and investment",
+      "title": "Astoria’s major projects",
+      "lead": "The Ministry leads and supports the flagship projects that prepare the country, from design to operation.",
+      "allLink": "View all projects",
+      "note": "Projects shown for demonstration, pending official data.",
+      "seeLink": "View the project",
+      "progressLabel": "Project progress",
+      "kinds": {
+        "nationalInfrastructure": "National infrastructure",
+        "nationalProgram": "National programme"
+      },
+      "statuses": {
+        "inConstruction": "Under construction",
+        "inProgress": "In progress",
+        "inStudies": "Under study",
+        "delivered": "Delivered"
+      },
+      "items": {
+        "railNordSud": {
+          "title": "North–South national rail line",
+          "location": "Across the Republic",
+          "deadline": "Expected delivery in 2031"
+        },
+        "tresHautDebit": {
+          "title": "National ultra-fast broadband network",
+          "location": "Whole territory",
+          "deadline": "Target 2029"
+        },
+        "barrageVallee": {
+          "title": "Vallée multi-purpose dam",
+          "location": "Vallée Province",
+          "deadline": "Expected delivery in 2033"
+        },
+        "renovationEnergetique": {
+          "title": "National energy renovation programme",
+          "location": "Whole territory",
+          "deadline": "Horizon 2030"
+        }
+      }
+    },
+    "state": {
+      "kicker": "Beyond roads and buildings",
+      "title": "The infrastructure of the Republic",
+      "lead": "The Ministry also oversees the infrastructure that keeps the State running.",
+      "message": "Public infrastructure is not limited to roads and buildings. Physical and digital infrastructure also lets the State operate, communicate and ensure the continuity of public services.",
+      "cta": "Discover the State’s infrastructure",
+      "items": {
+        "reseauxGouvernementaux": "Government networks",
+        "dataCenters": "Data centres",
+        "cloudGouvernemental": "Government cloud",
+        "telecommunications": "State telecommunications",
+        "batimentsPublics": "Public buildings",
+        "infrastructuresNumeriques": "Digital infrastructure",
+        "interoperabilite": "Interoperability",
+        "continuite": "Continuity of public services"
+      }
+    },
+    "map": {
+      "kicker": "One territory, many networks",
+      "title": "Infrastructure across Astoria",
+      "lead": "Roads, railways, ports, energy and data networks: one map to understand the Republic’s infrastructure.",
+      "note": "Schematic demonstration map. The interactive map will be fed by official State data.",
+      "filterLabel": "Explore a network:",
+      "regions": {
+        "nord": "North",
+        "littoral": "Coast",
+        "capitale": "Capital",
+        "est": "East",
+        "vallee": "Valley",
+        "sud": "South"
+      },
+      "filters": {
+        "mobilite": "Mobility",
+        "energie": "Energy",
+        "numerique": "Digital",
+        "eau": "Water",
+        "logement": "Housing",
+        "projets": "Projects"
+      }
+    },
+    "stats": {
+      "kicker": "Figures to understand",
+      "title": "Astoria in numbers",
+      "lead": "Key indicators of the country’s infrastructure.",
+      "note": "Demonstration indicators, pending official State data.",
+      "items": {
+        "routesNationales": {
+          "value": "2,480",
+          "label": "km of national road network"
+        },
+        "reseauFerroviaire": {
+          "value": "1,240",
+          "label": "km of rail network"
+        },
+        "couvertureTresHautDebit": {
+          "value": "98.7%",
+          "label": "ultra-fast broadband coverage"
+        },
+        "grandsProjets": {
+          "value": "42",
+          "label": "national major projects"
+        }
+      }
+    },
+    "priorities": {
+      "kicker": "Our commitments",
+      "title": "Our priorities",
+      "lead": "A few directions that guide every project, investment and decision of the Ministry.",
+      "items": {
+        "resilienceNationale": {
+          "title": "National resilience",
+          "desc": "Strengthen essential infrastructure so it holds up in times of crisis."
+        },
+        "souveraineteNumerique": {
+          "title": "Digital sovereignty",
+          "desc": "Develop digital infrastructure designed, hosted and controlled by the Republic."
+        },
+        "transitionEnergetique": {
+          "title": "Energy transition",
+          "desc": "Modernise networks and support the country’s energy transformation."
+        },
+        "mobiliteNationale": {
+          "title": "National mobility",
+          "desc": "Create an integrated, accessible, low-carbon transport system."
+        },
+        "logementHabitat": {
+          "title": "Housing",
+          "desc": "Develop a sustainable, affordable housing offer suited to everyone."
+        },
+        "territoiresDurables": {
+          "title": "Sustainable territories",
+          "desc": "Shape balanced territories that preserve water resources and ecosystems."
+        }
+      }
+    },
+    "news": {
+      "kicker": "Follow the Ministry",
+      "title": "News",
+      "lead": "Press releases, announcements and publications from the Ministry of Infrastructure and Digital Affairs.",
+      "allLink": "All news",
+      "items": {
+        "railModernisation": {
+          "title": "Rail network modernisation: the national plan is launched",
+          "tag": "Press release",
+          "date": "3 September 2026"
+        },
+        "cloudStrategy": {
+          "title": "The Government publishes the State cloud strategy",
+          "tag": "Strategy",
+          "date": "28 August 2026"
+        },
+        "fibreBarometer": {
+          "title": "Ultra-fast broadband: 98.7% of the territory covered",
+          "tag": "Publication",
+          "date": "19 August 2026"
+        }
+      }
+    },
+    "data": {
+      "kicker": "Open figures and public documents",
+      "title": "Data and transparency",
+      "lead": "The Ministry publishes its data, indicators and documents so its action can be verified.",
+      "cta": "Explore the data",
+      "items": {
+        "donneesOuvertes": "Open data",
+        "statistiques": "Statistics",
+        "cartes": "Maps",
+        "indicateurs": "Indicators",
+        "projets": "Projects",
+        "marchesPublics": "Public procurement",
+        "publications": "Publications",
+        "standards": "Standards"
+      }
+    },
+    "resilience": {
+      "kicker": "Preparing for the future",
+      "title": "Preparing the Republic for crises",
+      "lead": "National infrastructure must keep working when a crisis strikes.",
+      "text": "That is why the Ministry designs redundant systems, protects critical infrastructure and guarantees the continuity of essential services, whether physical or digital.",
+      "items": {
+        "infrastructuresCritiques": "Critical infrastructure",
+        "continuiteServices": "Continuity of services",
+        "redondance": "Network redundancy",
+        "resilienceEnergetique": "Energy resilience",
+        "resilienceNumerique": "Digital resilience",
+        "resilienceTerritoriale": "Territorial resilience"
+      }
+    }
+  }
+}

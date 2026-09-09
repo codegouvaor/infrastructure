@@ -1,3 +1,21 @@
+/**
+ * Cross-service domain configuration of the Astoria government platform.
+ *
+ * The ministry portal is currently served on its historical domain:
+ *
+ *   https://infra.gouv.aor
+ *
+ * A move to a longer institutional domain is planned:
+ *
+ *   https://infrastructures.gouv.aor   ← future institutional domain
+ *   https://infra.gouv.aor             ← kept as an alias / redirect
+ *
+ * Nothing in this file forces that migration: `main` still resolves to
+ * `infra.gouv.aor` so the live portal keeps working, and the routing layers
+ * (see `getDomainConfig`) already derive every absolute URL from this single
+ * place, so switching the canonical domain later only requires updating the
+ * `main` value (and DNS/nginx aliases, which are out of scope of the app).
+ */
 export type Environment = 'production' | 'localhost'
 
 export interface DomainConfig {
@@ -9,13 +27,13 @@ export interface DomainConfig {
 
 const DOMAINS: Record<Environment, DomainConfig> = {
   production: {
-    main: 'diplomatie.gouv.aor',
+    main: 'infra.gouv.aor',
     studios: 'studios.gouv.aor',
     sso: 'sso.gouv.aor',
     protocol: 'https',
   },
   localhost: {
-    main: 'diplomatie.gouv.localhost',
+    main: 'infra.gouv.localhost',
     studios: 'studios.gouv.localhost',
     sso: 'sso.gouv.localhost',
     protocol: 'http',

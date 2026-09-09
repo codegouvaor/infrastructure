@@ -1,0 +1,518 @@
+{
+  "brand": {
+    "republicName": "République d'Astoria"
+  },
+  "meta": {
+    "defaultTitle": "Ministère des Infrastructures et du Numérique",
+    "suffix": "République d'Astoria",
+    "description": "Le portail officiel du ministère des Infrastructures et du Numérique de la République d'Astoria : infrastructures, logement, énergie, mobilité, numérique et territoires.",
+    "searchPlaceholder": "Rechercher sur le portail"
+  },
+  "common": {
+    "skipToContent": "Aller au contenu",
+    "skipToFooter": "Aller au pied de page",
+    "backToTop": {
+      "ariaLabel": "Revenir en haut de page"
+    }
+  },
+  "header": {
+    "homeTitle": "Accueil — Ministère des Infrastructures et du Numérique",
+    "serviceTitle": "Ministère des Infrastructures et du Numérique",
+    "serviceTagline": "La fondation physique et numérique de la République",
+    "myGouv": "Mon Espace",
+    "accountLabel": "Mon compte",
+    "logoutLink": "Se déconnecter",
+    "account": {
+      "profile": "Mon profil",
+      "settings": "Mes paramètres"
+    }
+  },
+  "nav": {
+    "primary": {
+      "infrastructures": "Infrastructures",
+      "logement": "Logement",
+      "energie": "Énergie",
+      "mobilite": "Mobilité",
+      "numerique": "Numérique",
+      "territoires": "Territoires"
+    },
+    "panel": {
+      "infrastructures": {
+        "title": "Les infrastructures",
+        "text": "Le ministère définit et met en œuvre la politique de construction, d'entretien et de modernisation des infrastructures physiques de la Nation, des réseaux aux grands projets.",
+        "allLink": "Tout sur les infrastructures",
+        "construction": {
+          "title": "Construction",
+          "normes": "Normes de construction",
+          "marches": "Marchés publics",
+          "constructionPublique": "Construction publique",
+          "securite": "Sécurité des infrastructures"
+        },
+        "reseaux": {
+          "title": "Réseaux",
+          "reseauxNationaux": "Réseaux nationaux",
+          "eau": "Eau",
+          "assainissement": "Assainissement",
+          "reseauxEnergetiques": "Réseaux énergétiques"
+        },
+        "patrimoine": {
+          "title": "Patrimoine",
+          "patrimoinePublic": "Patrimoine public",
+          "batimentsPublics": "Bâtiments publics",
+          "entretien": "Entretien",
+          "modernisation": "Modernisation"
+        },
+        "grandsProjets": {
+          "title": "Grands projets",
+          "projetsNationaux": "Projets nationaux",
+          "projetsEnCours": "Projets en cours",
+          "projetsRealises": "Projets réalisés",
+          "appelsAProjets": "Appels à projets"
+        }
+      },
+      "logement": {
+        "title": "Le logement",
+        "text": "Politique du logement, construction, rénovation et logement public : garantir à chaque Astorien un logement digne, sûr et abordable.",
+        "allLink": "Tout sur le logement",
+        "habitat": {
+          "title": "Habitat",
+          "politiqueLogement": "Politique du logement",
+          "accession": "Accession au logement",
+          "collectif": "Habitat collectif",
+          "individuel": "Habitat individuel"
+        },
+        "construction": {
+          "title": "Construction",
+          "constructionNeuve": "Construction neuve",
+          "normesHabitat": "Normes de l'habitat",
+          "urbanismeResidentiel": "Urbanisme résidentiel",
+          "promoteurs": "Promoteurs et opérateurs"
+        },
+        "renovation": {
+          "title": "Rénovation",
+          "renovationEnergetique": "Rénovation énergétique",
+          "rehabilitation": "Réhabilitation",
+          "adaptationLogements": "Adaptation des logements",
+          "performanceBatiments": "Performance des bâtiments"
+        },
+        "logementPublic": {
+          "title": "Logement public",
+          "logementSocial": "Logement social",
+          "parcPublic": "Parc public",
+          "attribution": "Attribution",
+          "operateursPublics": "Opérateurs publics"
+        }
+      },
+      "energie": {
+        "title": "L'énergie",
+        "text": "Assurer une production et une distribution d'énergie sûres, abordables et décarbonées, au service de la souveraineté du pays.",
+        "allLink": "Tout sur l'énergie",
+        "electricite": {
+          "title": "Électricité",
+          "productionElectrique": "Production électrique",
+          "reseauElectrique": "Réseau électrique",
+          "distribution": "Distribution",
+          "securiteEnergetique": "Sécurité énergétique"
+        },
+        "reseaux": {
+          "title": "Réseaux",
+          "reseauxNationaux": "Réseaux nationaux",
+          "interconnexions": "Interconnexions",
+          "stockage": "Stockage",
+          "infrastructuresCritiques": "Infrastructures critiques"
+        },
+        "production": {
+          "title": "Production",
+          "nucleaire": "Nucléaire",
+          "renouvelables": "Renouvelables",
+          "hydraulique": "Hydraulique",
+          "autresSources": "Autres sources"
+        },
+        "transition": {
+          "title": "Transition",
+          "transitionEnergetique": "Transition énergétique",
+          "decarbonation": "Décarbonation",
+          "efficaciteEnergetique": "Efficacité énergétique",
+          "innovation": "Innovation"
+        }
+      },
+      "mobilite": {
+        "title": "La mobilité",
+        "text": "Relier les citoyens et les territoires par des réseaux de transport sûrs, efficaces et durables.",
+        "allLink": "Tout sur la mobilité",
+        "routier": {
+          "title": "Routier",
+          "routesNationales": "Routes nationales",
+          "autoroutes": "Autoroutes",
+          "ouvragesArt": "Ouvrages d'art",
+          "entretienRoutier": "Entretien routier"
+        },
+        "ferroviaire": {
+          "title": "Ferroviaire",
+          "reseauFerroviaire": "Réseau ferroviaire",
+          "gares": "Gares",
+          "transportFerroviaire": "Transport ferroviaire",
+          "modernisation": "Modernisation"
+        },
+        "transports": {
+          "title": "Transports",
+          "transportsPublics": "Transports publics",
+          "mobiliteUrbaine": "Mobilité urbaine",
+          "mobiliteRegionale": "Mobilité régionale",
+          "intermodalite": "Intermodalité"
+        },
+        "aerienMaritime": {
+          "title": "Aérien & maritime",
+          "aeroports": "Aéroports",
+          "ports": "Ports",
+          "transportMaritime": "Transport maritime",
+          "transportAerien": "Transport aérien"
+        }
+      },
+      "numerique": {
+        "title": "Le numérique",
+        "text": "Faire du numérique une véritable infrastructure nationale : connectivité, infrastructures numériques, services publics et souveraineté technologique.",
+        "allLink": "Tout sur le numérique",
+        "connectivite": {
+          "title": "Connectivité",
+          "tresHautDebit": "Très haut débit",
+          "fibre": "Fibre",
+          "reseauxMobiles": "Réseaux mobiles",
+          "couvertureTerritoriale": "Couverture territoriale"
+        },
+        "infrastructuresNumeriques": {
+          "title": "Infrastructures numériques",
+          "dataCenters": "Data centers",
+          "cloudGouvernemental": "Cloud gouvernemental",
+          "reseauxPublics": "Réseaux publics",
+          "hebergement": "Hébergement"
+        },
+        "servicesPublics": {
+          "title": "Services publics",
+          "identiteNumerique": "Identité numérique",
+          "interoperabilite": "Interopérabilité",
+          "apiGouvernementales": "API gouvernementales",
+          "plateformesPubliques": "Plateformes publiques"
+        },
+        "donneesTechnologies": {
+          "title": "Données & technologies",
+          "donneesPubliques": "Données publiques",
+          "intelligenceArtificielle": "Intelligence artificielle",
+          "standardsNumeriques": "Standards numériques",
+          "souveraineteTechnologique": "Souveraineté technologique"
+        }
+      },
+      "territoires": {
+        "title": "Les territoires",
+        "text": "Aménager les territoires, préserver la ressource en eau et renforcer la résilience de la Nation face aux risques.",
+        "allLink": "Tout sur les territoires",
+        "amenagement": {
+          "title": "Aménagement",
+          "amenagementTerritoire": "Aménagement du territoire",
+          "urbanisme": "Urbanisme",
+          "planification": "Planification territoriale",
+          "developpementRegional": "Développement régional"
+        },
+        "eau": {
+          "title": "Eau",
+          "gestionEau": "Gestion de l'eau",
+          "ressourcesHydriques": "Ressources hydriques",
+          "distribution": "Distribution",
+          "preventionRisques": "Prévention des risques"
+        },
+        "environnement": {
+          "title": "Environnement",
+          "infrastructuresDurables": "Infrastructures durables",
+          "biodiversite": "Biodiversité",
+          "transitionTerritoriale": "Transition territoriale",
+          "performanceEnvironnementale": "Performance environnementale"
+        },
+        "resilience": {
+          "title": "Résilience",
+          "resilienceTerritoriale": "Résilience territoriale",
+          "risquesNaturels": "Risques naturels",
+          "continuiteServices": "Continuité des services",
+          "infrastructuresCritiques": "Infrastructures critiques"
+        }
+      }
+    }
+  },
+  "footer": {
+    "contentDescription": "Le portail officiel du ministère des Infrastructures et du Numérique de la République d'Astoria.",
+    "columns": {
+      "infrastructures": {
+        "title": "Infrastructures"
+      },
+      "logement": {
+        "title": "Logement"
+      },
+      "energie": {
+        "title": "Énergie"
+      },
+      "mobilite": {
+        "title": "Mobilité"
+      },
+      "numerique": {
+        "title": "Numérique"
+      },
+      "territoires": {
+        "title": "Territoires"
+      }
+    },
+    "bottom": {
+      "contact": "Contact",
+      "planDuPortail": "Plan du portail",
+      "documentsOpposables": "Documents opposables",
+      "privacy": "Confidentialité",
+      "cookies": "Gestion des cookies",
+      "publications": "Publications officielles"
+    },
+    "license": "Sauf mention contraire, tous les contenus de ce site sont disponibles sous <link>licence APSL</link>."
+  },
+  "stayInTouch": {
+    "newsletter": {
+      "title": "Restez informé",
+      "desc": "Recevez chaque mois l'actualité du ministère des Infrastructures et du Numérique.",
+      "label": "Votre adresse électronique",
+      "placeholder": "ex. prenom.nom@exemple.aor",
+      "submit": "S'abonner",
+      "invalidEmail": "Veuillez saisir une adresse électronique valide.",
+      "hint": "Vous pouvez vous désinscrire à tout moment.",
+      "success": "Votre abonnement a bien été enregistré."
+    },
+    "follow": {
+      "title": "Suivez le ministère",
+      "items": {
+        "x": "Suivre le ministère sur X",
+        "facebook": "Suivre le ministère sur Facebook",
+        "linkedin": "Suivre le ministère sur LinkedIn",
+        "instagram": "Suivre le ministère sur Instagram",
+        "threads": "Suivre le ministère sur Threads"
+      }
+    }
+  },
+  "home": {
+    "metaTitle": "Accueil — Ministère des Infrastructures et du Numérique",
+    "hero": {
+      "kicker": "Ministère des Infrastructures et du Numérique",
+      "title": "Construire, connecter et faire évoluer Astoria.",
+      "lead": "Le ministère des Infrastructures et du Numérique conçoit, coordonne et accompagne les infrastructures qui permettent à la République de fonctionner aujourd’hui et de préparer son avenir.",
+      "ctaProjects": "Découvrir les projets",
+      "ctaPolicies": "Nos politiques publiques"
+    },
+    "domains": {
+      "kicker": "Agir sur tous les champs",
+      "title": "Six domaines pour la République",
+      "lead": "Des routes aux réseaux de demain, le ministère intervient sur l’ensemble des infrastructures physiques et numériques du pays.",
+      "items": {
+        "infrastructures": {
+          "desc": "Construire, entretenir et moderniser les infrastructures nationales."
+        },
+        "logement": {
+          "desc": "Développer un habitat accessible, durable et adapté."
+        },
+        "energie": {
+          "desc": "Garantir une énergie sûre, accessible et résiliente."
+        },
+        "mobilite": {
+          "desc": "Connecter les citoyens et les territoires."
+        },
+        "numerique": {
+          "desc": "Développer les infrastructures numériques de la République."
+        },
+        "territoires": {
+          "desc": "Aménager des territoires durables, connectés et résilients."
+        }
+      }
+    },
+    "projects": {
+      "kicker": "Chantiers et investissements",
+      "title": "Les grands projets d’Astoria",
+      "lead": "Le ministère conduit et accompagne les projets structurants qui préparent le pays, de leur conception jusqu’à leur exploitation.",
+      "allLink": "Voir tous les projets",
+      "note": "Projets présentés à titre de démonstration, en attendant les données officielles.",
+      "seeLink": "Voir le projet",
+      "progressLabel": "Avancement du projet",
+      "kinds": {
+        "nationalInfrastructure": "Infrastructure nationale",
+        "nationalProgram": "Programme national"
+      },
+      "statuses": {
+        "inConstruction": "En construction",
+        "inProgress": "En cours",
+        "inStudies": "En études",
+        "delivered": "Réalisé"
+      },
+      "items": {
+        "railNordSud": {
+          "title": "Ligne ferroviaire nationale Nord–Sud",
+          "location": "Traverse la République",
+          "deadline": "Livraison prévue en 2031"
+        },
+        "tresHautDebit": {
+          "title": "Réseau très haut débit national",
+          "location": "Ensemble du territoire",
+          "deadline": "Objectif 2029"
+        },
+        "barrageVallee": {
+          "title": "Grand barrage multi-usages de la Vallée",
+          "location": "Province de la Vallée",
+          "deadline": "Livraison prévue en 2033"
+        },
+        "renovationEnergetique": {
+          "title": "Programme national de rénovation énergétique",
+          "location": "Ensemble du territoire",
+          "deadline": "Horizon 2030"
+        }
+      }
+    },
+    "state": {
+      "kicker": "Au-delà des routes et des bâtiments",
+      "title": "Les infrastructures de la République",
+      "lead": "Le ministère veille aussi sur les infrastructures qui font fonctionner l’État.",
+      "message": "Une infrastructure publique ne se limite pas aux routes et aux bâtiments. Les infrastructures physiques et numériques permettent également à l’État de fonctionner, de communiquer et d’assurer la continuité des services publics.",
+      "cta": "Découvrir les infrastructures de l’État",
+      "items": {
+        "reseauxGouvernementaux": "Réseaux gouvernementaux",
+        "dataCenters": "Data centers",
+        "cloudGouvernemental": "Cloud gouvernemental",
+        "telecommunications": "Télécommunications de l’État",
+        "batimentsPublics": "Bâtiments publics",
+        "infrastructuresNumeriques": "Infrastructures numériques",
+        "interoperabilite": "Interopérabilité",
+        "continuite": "Continuité des services publics"
+      }
+    },
+    "map": {
+      "kicker": "Un territoire, des réseaux",
+      "title": "Les infrastructures en Astoria",
+      "lead": "Routes, voies ferrées, ports, réseaux d’énergie et de données : une même carte pour comprendre les infrastructures de la République.",
+      "note": "Carte schématique de démonstration. La carte interactive sera alimentée par les données officielles de l’État.",
+      "filterLabel": "Explorer un réseau :",
+      "regions": {
+        "nord": "Nord",
+        "littoral": "Littoral",
+        "capitale": "Capitale",
+        "est": "Est",
+        "vallee": "Vallée",
+        "sud": "Sud"
+      },
+      "filters": {
+        "mobilite": "Mobilité",
+        "energie": "Énergie",
+        "numerique": "Numérique",
+        "eau": "Eau",
+        "logement": "Logement",
+        "projets": "Projets"
+      }
+    },
+    "stats": {
+      "kicker": "Des repères pour comprendre",
+      "title": "Astoria en chiffres",
+      "lead": "Quelques indicateurs clés des infrastructures du pays.",
+      "note": "Indicateurs de démonstration, en attendant les données officielles de l’État.",
+      "items": {
+        "routesNationales": {
+          "value": "2 480",
+          "label": "km de réseau routier national"
+        },
+        "reseauFerroviaire": {
+          "value": "1 240",
+          "label": "km de réseau ferroviaire"
+        },
+        "couvertureTresHautDebit": {
+          "value": "98,7 %",
+          "label": "de couverture très haut débit"
+        },
+        "grandsProjets": {
+          "value": "42",
+          "label": "grands projets nationaux"
+        }
+      }
+    },
+    "priorities": {
+      "kicker": "Nos engagements",
+      "title": "Nos priorités",
+      "lead": "Quelques orientations qui guident chaque projet, chaque investissement et chaque décision du ministère.",
+      "items": {
+        "resilienceNationale": {
+          "title": "Résilience nationale",
+          "desc": "Renforcer les infrastructures essentielles pour qu’elles tiennent face aux crises."
+        },
+        "souveraineteNumerique": {
+          "title": "Souveraineté numérique",
+          "desc": "Développer des infrastructures numériques conçues, hébergées et maîtrisées par la République."
+        },
+        "transitionEnergetique": {
+          "title": "Transition énergétique",
+          "desc": "Moderniser les réseaux et accompagner la transformation énergétique du pays."
+        },
+        "mobiliteNationale": {
+          "title": "Mobilité nationale",
+          "desc": "Créer un système de transport intégré, accessible et décarboné."
+        },
+        "logementHabitat": {
+          "title": "Logement et habitat",
+          "desc": "Développer une offre de logement durable, abordable et adaptée à chacun."
+        },
+        "territoiresDurables": {
+          "title": "Territoires durables",
+          "desc": "Aménager des territoires équilibrés qui préservent la ressource en eau et les écosystèmes."
+        }
+      }
+    },
+    "news": {
+      "kicker": "Suivre l’action du ministère",
+      "title": "Actualités",
+      "lead": "Communiqués, annonces et publications du ministère des Infrastructures et du Numérique.",
+      "allLink": "Toutes les actualités",
+      "items": {
+        "railModernisation": {
+          "title": "Modernisation du réseau ferroviaire : le plan national est lancé",
+          "tag": "Communiqué",
+          "date": "3 septembre 2026"
+        },
+        "cloudStrategy": {
+          "title": "Le Gouvernement publie la stratégie cloud de l’État",
+          "tag": "Stratégie",
+          "date": "28 août 2026"
+        },
+        "fibreBarometer": {
+          "title": "Très haut débit : 98,7 % du territoire couvert",
+          "tag": "Publication",
+          "date": "19 août 2026"
+        }
+      }
+    },
+    "data": {
+      "kicker": "Chiffres ouverts et documents publics",
+      "title": "Données et transparence",
+      "lead": "Le ministère publie ses données, ses indicateurs et ses documents pour rendre son action vérifiable.",
+      "cta": "Explorer les données",
+      "items": {
+        "donneesOuvertes": "Données ouvertes",
+        "statistiques": "Statistiques",
+        "cartes": "Cartes",
+        "indicateurs": "Indicateurs",
+        "projets": "Projets",
+        "marchesPublics": "Marchés publics",
+        "publications": "Publications",
+        "standards": "Standards"
+      }
+    },
+    "resilience": {
+      "kicker": "Préparer l’avenir",
+      "title": "Préparer la République aux crises",
+      "lead": "Une infrastructure nationale doit continuer à fonctionner lorsqu’une crise survient.",
+      "text": "C’est pourquoi le ministère conçoit des systèmes redondants, protège les infrastructures critiques et garantit la continuité des services essentiels, qu’ils soient physiques ou numériques.",
+      "items": {
+        "infrastructuresCritiques": "Infrastructures critiques",
+        "continuiteServices": "Continuité des services",
+        "redondance": "Redondance des réseaux",
+        "resilienceEnergetique": "Résilience énergétique",
+        "resilienceNumerique": "Résilience numérique",
+        "resilienceTerritoriale": "Résilience territoriale"
+      }
+    }
+  }
+}

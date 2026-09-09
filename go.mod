@@ -1,4 +1,4 @@
-module github.com/codegouvaor/diplomatie
+module github.com/codegouvaor/infrastructure
 
 go 1.25.5
 

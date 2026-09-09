@@ -1,21 +1,33 @@
 /**
- * URL structure of the public portal.
+ * URL structure of the public portal of the Ministry of Infrastructure and
+ * Digital Affairs of the Republic of Astoria.
  *
  * Hrefs are locale-agnostic pathnames: the next-intl Link (registered as the
  * ADS link renderer) prefixes the active locale automatically. Labels are
  * never stored here — they come from the message catalogs through the key
- * provided by each entry.
+ * provided by each entry (see `apps/messages/{fr,en}.json`).
+ *
+ * Architecture of the navigation:
+ *
+ *   primaryNavigation  → the six institutional domains of the ministry. Each
+ *                        domain opens a mega-menu panel structured in four
+ *                        themes of four links:
+ *                            6 domaines × 4 thèmes × 4 liens
+ *
+ * Everything is configuration-driven: the header and the footer derive their
+ * markup from this array, so adding a domain/theme/link later never requires
+ * rewriting a component.
  */
 export const PORTAL_HOME = "/";
 
-/** The six subjects of the portal — both `nav.primary` and `footer.columns` keys. */
+/** The six institutional domains — both `nav.primary` and `footer.columns` keys. */
 export type PrimaryNavKey =
-  | "relationsExterieures"
-  | "paysTerritoires"
-  | "accordsEngagements"
-  | "politiqueEtrangere"
-  | "activiteDiplomatique"
-  | "leMinistere";
+  | "infrastructures"
+  | "logement"
+  | "energie"
+  | "mobilite"
+  | "numerique"
+  | "territoires";
 
 /** A destination inside a mega-menu panel; its label is a `nav.panel` message key. */
 export type NavigationLink = {
@@ -24,9 +36,10 @@ export type NavigationLink = {
 };
 
 /**
- * A theme of a navigation section. It heads its own group in the mega-menu
- * panel and is followed by its related destinations. Each theme carries four
- * links: the theme itself (heading) plus its `links`.
+ * A theme of a navigation section. In the mega-menu panel it heads one of the
+ * four columns (`labelKey` → `nav.panel.<domain>.<theme>.title`); in the
+ * footer it becomes a destination of the domain column. It carries the four
+ * destinations of the theme.
  */
 export type NavigationItem = NavigationLink & {
   /** Related destinations nested under this theme. */
@@ -36,26 +49,27 @@ export type NavigationItem = NavigationLink & {
 /**
  * One top-level entry of the Government Header navigation.
  *
- * Navigation principle (info.gouv.fr-inspired, adapted to Astoria): the
- * diplomacy header is organised around the reference data of the foreign
- * policy of the Republic — the subjects the visitor needs to understand the
- * external relations of Astoria. Every section opens a mega-menu panel
- * composed of
- *  - a leader band: the section name, a one-line description and the main
- *    section action (“Voir toutes les relations”, …),
- *  - four themes, each headed by its main destination and followed by three
- *    related destinations — four links per theme, immediately visible.
+ * Navigation principle (info.gouv.fr-inspired, adapted to Astoria): the header
+ * is organised around the institutional perimeter of the ministry — the six
+ * domains it is responsible for across the whole lifecycle of infrastructure:
  *
- * The panel is not the sitemap of the portal: only the destinations that
- * matter to the visitor journey. Top-level labels resolve under
- * `nav.primary` (`labelKey`), panel content under `nav.panel` (`titleKey`,
- * `paragraphKey` and nested `labelKey`s).
+ *   Concevoir → Planifier → Construire → Exploiter → Maintenir →
+ *   Moderniser → Résilient.
+ *
+ * Every domain opens a mega-menu panel composed of
+ *  - a leader band: the domain name, a one-line description and the main
+ *    action of the section (“Tout sur les infrastructures”, …),
+ *  - four themes, each headed by its title and followed by its four
+ *    destinations.
+ *
+ * Top-level labels resolve under `nav.primary` (`labelKey`), panel content
+ * under `nav.panel` (`titleKey`, `paragraphKey`, nested `labelKey`s).
  */
 export type NavigationSection = {
   type: "megaMenu";
   /** Message key (`nav.primary`) of the top-level tab. */
   labelKey: PrimaryNavKey;
-  /** Landing page of the section, used by the tab and the leader action. */
+  /** Landing page of the section, used by the leader action and active-state detection. */
   href: string;
   /** Leader band shown on top of the panel. */
   leader: {
@@ -74,12 +88,12 @@ export type FooterColumn = {
 };
 
 export const sectionPaths = {
-  relationsExterieures: "/relations-exterieures",
-  pays: "/pays",
-  accords: "/accords",
-  politiqueEtrangere: "/politique-etrangere",
-  activiteDiplomatique: "/activite-diplomatique",
-  ministere: "/ministere",
+  infrastructures: "/infrastructures",
+  logement: "/logement",
+  energie: "/energie",
+  mobilite: "/mobilite",
+  numerique: "/numerique",
+  territoires: "/territoires",
 } as const;
 
 export const legalPaths = {
@@ -99,483 +113,643 @@ export const pageAnchors = {
 } as const;
 
 /**
- * Main navigation of the Government Header of the Ministry of Foreign Affairs
- * of the Republic of Astoria — the permanent information architecture of the
- * application, organised in six subjects built around the reference data of
- * the foreign policy of the Republic:
+ * Main navigation of the Government Header of the Ministry of Infrastructure
+ * and Digital Affairs of the Republic of Astoria — the permanent information
+ * architecture of the portal, organised in six domains built around the
+ * institutional perimeter of the ministry:
  *
- *   Relations extérieures  → Comprendre : avec qui Astoria entretient-elle des relations ?
- *   Pays & territoires     → Explorer : comment consulter les fiches du monde ?
- *   Accords & engagements  → Consulter : quels traités et engagements ont été conclus ?
- *   Politique étrangère    → Découvrir : quelles sont les positions officielles d'Astoria ?
- *   Activité diplomatique  → Suivre : que fait la diplomatie astorienne actuellement ?
- *   Le Ministère           → Connaître : comment fonctionne le Ministère et son réseau ?
+ *   Infrastructures  → Construire : normes, réseaux, patrimoine, grands projets
+ *   Logement         → Loger    : habitat, construction, rénovation, logement public
+ *   Énergie          → Alimenter : électricité, réseaux, production, transition
+ *   Mobilité         → Relier   : routier, ferroviaire, transports, aérien & maritime
+ *   Numérique        → Numériser : connectivité, infrastructures, services, données
+ *   Territoires      → Aménager : aménagement, eau, environnement, résilience
  *
- * Each subject opens a mega-menu panel with a leader band and four themes —
- * each theme headed by its main destination and followed by three related
- * destinations (four links per theme). The panel is not the sitemap of the
- * portal — it prepares the diplomacy information graph (countries, treaties,
- * visits, positions) without overloading the header. The structure is
- * configuration-driven: the same architecture can be reused by another
- * institution by providing a different `primaryNavigation`.
+ * Each domain opens a mega-menu panel with a leader band and four themes — each
+ * theme headed by its title and followed by its four destinations. The panel is
+ * not the sitemap of the portal; it exposes the destinations that matter to the
+ * visitor journey. The structure is configuration-driven: adding a section only
+ * means adding an entry here (and the matching messages).
  *
- * Hrefs follow the URL plan of the diplomacy portal; a few point to pages
- * being published and will resolve as soon as those sections ship.
+ * Hrefs follow the URL plan of the portal; several point to pages being
+ * published and will resolve as soon as those sections ship.
  */
 export const primaryNavigation: ReadonlyArray<NavigationSection> = [
   {
     type: "megaMenu",
-    labelKey: "relationsExterieures",
-    href: sectionPaths.relationsExterieures,
+    labelKey: "infrastructures",
+    href: sectionPaths.infrastructures,
     leader: {
-      titleKey: "relationsTitle",
-      paragraphKey: "relationsText",
-      link: { labelKey: "relationsAllLink", href: sectionPaths.relationsExterieures },
+      titleKey: "infrastructures.title",
+      paragraphKey: "infrastructures.text",
+      link: {
+        labelKey: "infrastructures.allLink",
+        href: sectionPaths.infrastructures,
+      },
     },
     primaryItems: [
       {
-        labelKey: "relationsBilaterales",
-        href: "/relations-exterieures/bilaterales",
+        labelKey: "infrastructures.construction.title",
+        href: "/infrastructures/construction",
         links: [
           {
-            labelKey: "relationsBilateralesEtatsPartenaires",
-            href: "/relations-exterieures/bilaterales/etats-partenaires",
+            labelKey: "infrastructures.construction.normes",
+            href: "/infrastructures/construction/normes-de-construction",
           },
           {
-            labelKey: "relationsBilateralesNiveauRelations",
-            href: "/relations-exterieures/bilaterales/niveau-des-relations",
+            labelKey: "infrastructures.construction.marches",
+            href: "/infrastructures/construction/marches-publics",
           },
           {
-            labelKey: "relationsBilateralesChronologie",
-            href: "/relations-exterieures/bilaterales/chronologie",
+            labelKey: "infrastructures.construction.constructionPublique",
+            href: "/infrastructures/construction/construction-publique",
           },
-        
-            { labelKey: "relationsBilateralesAccords", href: "/relations-exterieures/bilaterales/accords" },],
+          {
+            labelKey: "infrastructures.construction.securite",
+            href: "/infrastructures/construction/securite-des-infrastructures",
+          },
+        ],
       },
       {
-        labelKey: "relationsRegionales",
-        href: "/relations-exterieures/regionales",
+        labelKey: "infrastructures.reseaux.title",
+        href: "/infrastructures/reseaux",
         links: [
           {
-            labelKey: "relationsRegionalesZones",
-            href: "/relations-exterieures/regionales/zones-geographiques",
+            labelKey: "infrastructures.reseaux.reseauxNationaux",
+            href: "/infrastructures/reseaux/reseaux-nationaux",
           },
           {
-            labelKey: "relationsRegionalesInitiatives",
-            href: "/relations-exterieures/regionales/initiatives",
+            labelKey: "infrastructures.reseaux.eau",
+            href: "/infrastructures/reseaux/eau",
           },
           {
-            labelKey: "relationsRegionalesCadres",
-            href: "/relations-exterieures/regionales/cadres",
+            labelKey: "infrastructures.reseaux.assainissement",
+            href: "/infrastructures/reseaux/assainissement",
           },
-        
-            { labelKey: "relationsRegionalesDialogue", href: "/relations-exterieures/regionales/dialogue" },],
+          {
+            labelKey: "infrastructures.reseaux.reseauxEnergetiques",
+            href: "/infrastructures/reseaux/reseaux-energetiques",
+          },
+        ],
       },
       {
-        labelKey: "relationsOrganisationsInternationales",
-        href: "/relations-exterieures/organisations-internationales",
+        labelKey: "infrastructures.patrimoine.title",
+        href: "/infrastructures/patrimoine",
         links: [
           {
-            labelKey: "relationsOrganisationsMondiales",
-            href: "/relations-exterieures/organisations-internationales/mondiales",
+            labelKey: "infrastructures.patrimoine.patrimoinePublic",
+            href: "/infrastructures/patrimoine/patrimoine-public",
           },
           {
-            labelKey: "relationsOrganisationsParticipation",
-            href: "/relations-exterieures/organisations-internationales/participation",
+            labelKey: "infrastructures.patrimoine.batimentsPublics",
+            href: "/infrastructures/patrimoine/batiments-publics",
           },
           {
-            labelKey: "relationsMultilaterales",
-            href: "/relations-exterieures/multilaterales",
+            labelKey: "infrastructures.patrimoine.entretien",
+            href: "/infrastructures/patrimoine/entretien",
           },
-        
-            { labelKey: "relationsOrganisationsRegionales", href: "/relations-exterieures/organisations-internationales/regionales" },],
+          {
+            labelKey: "infrastructures.patrimoine.modernisation",
+            href: "/infrastructures/patrimoine/modernisation",
+          },
+        ],
       },
       {
-        labelKey: "relationsPartenariatsStrategiques",
-        href: "/relations-exterieures/partenariats-strategiques",
+        labelKey: "infrastructures.grandsProjets.title",
+        href: "/infrastructures/grands-projets",
         links: [
           {
-            labelKey: "relationsPartenariatsPartenairesPrivilegies",
-            href: "/relations-exterieures/partenariats-strategiques/partenaires-privilegies",
+            labelKey: "infrastructures.grandsProjets.projetsNationaux",
+            href: "/infrastructures/grands-projets/projets-nationaux",
           },
           {
-            labelKey: "relationsPartenariatsCooperationsSectorielles",
-            href: "/relations-exterieures/partenariats-strategiques/cooperations-sectorielles",
+            labelKey: "infrastructures.grandsProjets.projetsEnCours",
+            href: "/infrastructures/grands-projets/projets-en-cours",
           },
           {
-            labelKey: "relationsCooperationDiplomatique",
-            href: "/relations-exterieures/cooperation-diplomatique",
+            labelKey: "infrastructures.grandsProjets.projetsRealises",
+            href: "/infrastructures/grands-projets/projets-realises",
           },
-        
-            { labelKey: "relationsPartenariatsDialogue", href: "/relations-exterieures/partenariats-strategiques/dialogue" },],
+          {
+            labelKey: "infrastructures.grandsProjets.appelsAProjets",
+            href: "/infrastructures/grands-projets/appels-a-projets",
+          },
+        ],
       },
     ],
   },
   {
     type: "megaMenu",
-    labelKey: "paysTerritoires",
-    href: sectionPaths.pays,
+    labelKey: "logement",
+    href: sectionPaths.logement,
     leader: {
-      titleKey: "paysTitle",
-      paragraphKey: "paysText",
-      link: { labelKey: "paysAllLink", href: sectionPaths.pays },
+      titleKey: "logement.title",
+      paragraphKey: "logement.text",
+      link: {
+        labelKey: "logement.allLink",
+        href: sectionPaths.logement,
+      },
     },
     primaryItems: [
       {
-        labelKey: "paysTousLesPays",
-        href: "/pays",
-        links: [
-          { labelKey: "paysRepertoire", href: "/pays/repertoire" },
-          { labelKey: "paysParRegion", href: "/pays/par-region" },
-          { labelKey: "paysCartes", href: "/pays/cartes" },
-        
-            { labelKey: "paysTerritoiresNonSouverains", href: "/pays/territoires-non-souverains" },],
-      },
-      {
-        labelKey: "paysFiches",
-        href: "/pays/fiches",
+        labelKey: "logement.habitat.title",
+        href: "/logement/habitat",
         links: [
           {
-            labelKey: "paysFichesRelationsBilaterales",
-            href: "/pays/fiches/relations-bilaterales",
+            labelKey: "logement.habitat.politiqueLogement",
+            href: "/logement/habitat/politique-du-logement",
           },
-          { labelKey: "paysFichesAccords", href: "/pays/fiches/accords" },
           {
-            labelKey: "paysFichesRepresentations",
-            href: "/pays/fiches/representations",
+            labelKey: "logement.habitat.accession",
+            href: "/logement/habitat/accession-au-logement",
           },
-        
-            { labelKey: "paysFichesChiffresCles", href: "/pays/fiches/chiffres-cles" },],
+          {
+            labelKey: "logement.habitat.collectif",
+            href: "/logement/habitat/habitat-collectif",
+          },
+          {
+            labelKey: "logement.habitat.individuel",
+            href: "/logement/habitat/habitat-individuel",
+          },
+        ],
       },
       {
-        labelKey: "paysRepresentationsDiplomatiques",
-        href: "/pays/representations",
+        labelKey: "logement.construction.title",
+        href: "/logement/construction",
         links: [
-          { labelKey: "paysRepresentationsAmbassades", href: "/pays/representations/ambassades" },
-          { labelKey: "paysRepresentationsConsulats", href: "/pays/representations/consulats" },
           {
-            labelKey: "paysRepresentationsMissionsPermanentes",
-            href: "/pays/representations/missions-permanentes",
+            labelKey: "logement.construction.constructionNeuve",
+            href: "/logement/construction/construction-neuve",
           },
-        
-            { labelKey: "paysRepresentationsReseauConsulaire", href: "/pays/representations/reseau-consulaire" },],
+          {
+            labelKey: "logement.construction.normesHabitat",
+            href: "/logement/construction/normes-de-l-habitat",
+          },
+          {
+            labelKey: "logement.construction.urbanismeResidentiel",
+            href: "/logement/construction/urbanisme-residentiel",
+          },
+          {
+            labelKey: "logement.construction.promoteurs",
+            href: "/logement/construction/promoteurs-et-operateurs",
+          },
+        ],
       },
       {
-        labelKey: "paysRelationsAvecAstoria",
-        href: "/pays/relations-avec-astoria",
+        labelKey: "logement.renovation.title",
+        href: "/logement/renovation",
         links: [
-          { labelKey: "paysRelationsNiveaux", href: "/pays/relations-avec-astoria/niveaux" },
-          { labelKey: "paysRelationsNouveautes", href: "/pays/relations-avec-astoria/nouveautes" },
-          { labelKey: "paysRelationsChronologie", href: "/pays/relations-avec-astoria/chronologie" },
-        
-            { labelKey: "paysRelationsReciprocite", href: "/pays/relations-avec-astoria/reciprocite" },],
+          {
+            labelKey: "logement.renovation.renovationEnergetique",
+            href: "/logement/renovation/renovation-energetique",
+          },
+          {
+            labelKey: "logement.renovation.rehabilitation",
+            href: "/logement/renovation/rehabilitation",
+          },
+          {
+            labelKey: "logement.renovation.adaptationLogements",
+            href: "/logement/renovation/adaptation-des-logements",
+          },
+          {
+            labelKey: "logement.renovation.performanceBatiments",
+            href: "/logement/renovation/performance-des-batiments",
+          },
+        ],
+      },
+      {
+        labelKey: "logement.logementPublic.title",
+        href: "/logement/logement-public",
+        links: [
+          {
+            labelKey: "logement.logementPublic.logementSocial",
+            href: "/logement/logement-public/logement-social",
+          },
+          {
+            labelKey: "logement.logementPublic.parcPublic",
+            href: "/logement/logement-public/parc-public",
+          },
+          {
+            labelKey: "logement.logementPublic.attribution",
+            href: "/logement/logement-public/attribution",
+          },
+          {
+            labelKey: "logement.logementPublic.operateursPublics",
+            href: "/logement/logement-public/operateurs-publics",
+          },
+        ],
       },
     ],
   },
   {
     type: "megaMenu",
-    labelKey: "accordsEngagements",
-    href: sectionPaths.accords,
+    labelKey: "energie",
+    href: sectionPaths.energie,
     leader: {
-      titleKey: "accordsTitle",
-      paragraphKey: "accordsText",
-      link: { labelKey: "accordsAllLink", href: sectionPaths.accords },
+      titleKey: "energie.title",
+      paragraphKey: "energie.text",
+      link: {
+        labelKey: "energie.allLink",
+        href: sectionPaths.energie,
+      },
     },
     primaryItems: [
       {
-        labelKey: "accordsTraitesInternationaux",
-        href: "/accords/traites-internationaux",
+        labelKey: "energie.electricite.title",
+        href: "/energie/electricite",
         links: [
           {
-            labelKey: "accordsTraitesMultilateraux",
-            href: "/accords/traites-internationaux/multilateraux",
+            labelKey: "energie.electricite.productionElectrique",
+            href: "/energie/electricite/production-electrique",
           },
           {
-            labelKey: "accordsTraitesRatifications",
-            href: "/accords/traites-internationaux/ratifications",
+            labelKey: "energie.electricite.reseauElectrique",
+            href: "/energie/electricite/reseau-electrique",
           },
           {
-            labelKey: "accordsTraitesTextes",
-            href: "/accords/traites-internationaux/textes",
+            labelKey: "energie.electricite.distribution",
+            href: "/energie/electricite/distribution",
           },
-        
-            { labelKey: "accordsTraitesListe", href: "/accords/traites-internationaux/liste" },],
+          {
+            labelKey: "energie.electricite.securiteEnergetique",
+            href: "/energie/electricite/securite-energetique",
+          },
+        ],
       },
       {
-        labelKey: "accordsBilateraux",
-        href: "/accords/bilateraux",
+        labelKey: "energie.reseaux.title",
+        href: "/energie/reseaux",
         links: [
-          { labelKey: "accordsBilaterauxParPays", href: "/accords/bilateraux/par-pays" },
-          { labelKey: "accordsBilaterauxEnVigueur", href: "/accords/bilateraux/en-vigueur" },
-          { labelKey: "accordsEnNegociation", href: "/accords/en-negociation" },
-        
-            { labelKey: "accordsBilaterauxSignes", href: "/accords/bilateraux/signes" },],
+          {
+            labelKey: "energie.reseaux.reseauxNationaux",
+            href: "/energie/reseaux/reseaux-nationaux",
+          },
+          {
+            labelKey: "energie.reseaux.interconnexions",
+            href: "/energie/reseaux/interconnexions",
+          },
+          {
+            labelKey: "energie.reseaux.stockage",
+            href: "/energie/reseaux/stockage",
+          },
+          {
+            labelKey: "energie.reseaux.infrastructuresCritiques",
+            href: "/energie/reseaux/infrastructures-critiques",
+          },
+        ],
       },
       {
-        labelKey: "accordsConventions",
-        href: "/accords/conventions",
+        labelKey: "energie.production.title",
+        href: "/energie/production",
         links: [
           {
-            labelKey: "accordsConventionsMultilaterales",
-            href: "/accords/conventions/multilaterales",
+            labelKey: "energie.production.nucleaire",
+            href: "/energie/production/nucleaire",
           },
           {
-            labelKey: "accordsConventionsCooperation",
-            href: "/accords/conventions/cooperation",
+            labelKey: "energie.production.renouvelables",
+            href: "/energie/production/renouvelables",
           },
           {
-            labelKey: "accordsConventionsSectorielles",
-            href: "/accords/conventions/sectorielles",
+            labelKey: "energie.production.hydraulique",
+            href: "/energie/production/hydraulique",
           },
-        
-            { labelKey: "accordsConventionsEnVigueur", href: "/accords/conventions/en-vigueur" },],
+          {
+            labelKey: "energie.production.autresSources",
+            href: "/energie/production/autres-sources",
+          },
+        ],
       },
       {
-        labelKey: "accordsEngagementsInternationaux",
-        href: "/accords/engagements",
+        labelKey: "energie.transition.title",
+        href: "/energie/transition",
         links: [
           {
-            labelKey: "accordsEngagementsMultilateraux",
-            href: "/accords/engagements/multilateraux",
+            labelKey: "energie.transition.transitionEnergetique",
+            href: "/energie/transition/transition-energetique",
           },
-          { labelKey: "accordsEngagementsSuivi", href: "/accords/engagements/suivi" },
-          { labelKey: "accordsEnVigueur", href: "/accords/en-vigueur" },
-        
-            { labelKey: "accordsEngagementsObjectifs", href: "/accords/engagements/objectifs" },],
+          {
+            labelKey: "energie.transition.decarbonation",
+            href: "/energie/transition/decarbonation",
+          },
+          {
+            labelKey: "energie.transition.efficaciteEnergetique",
+            href: "/energie/transition/efficacite-energetique",
+          },
+          {
+            labelKey: "energie.transition.innovation",
+            href: "/energie/transition/innovation",
+          },
+        ],
       },
     ],
   },
   {
     type: "megaMenu",
-    labelKey: "politiqueEtrangere",
-    href: sectionPaths.politiqueEtrangere,
+    labelKey: "mobilite",
+    href: sectionPaths.mobilite,
     leader: {
-      titleKey: "politiqueTitle",
-      paragraphKey: "politiqueText",
-      link: { labelKey: "politiqueAllLink", href: sectionPaths.politiqueEtrangere },
+      titleKey: "mobilite.title",
+      paragraphKey: "mobilite.text",
+      link: {
+        labelKey: "mobilite.allLink",
+        href: sectionPaths.mobilite,
+      },
     },
     primaryItems: [
       {
-        labelKey: "politiquePrioritesDiplomatiques",
-        href: "/politique-etrangere/priorites",
+        labelKey: "mobilite.routier.title",
+        href: "/mobilite/routier",
         links: [
-          { labelKey: "politiquePrioritesAxes", href: "/politique-etrangere/priorites/axes" },
           {
-            labelKey: "politiquePrioritesFeuilleDeRoute",
-            href: "/politique-etrangere/priorites/feuille-de-route",
+            labelKey: "mobilite.routier.routesNationales",
+            href: "/mobilite/routier/routes-nationales",
           },
           {
-            labelKey: "politiquePrioritesRapports",
-            href: "/politique-etrangere/priorites/rapports",
+            labelKey: "mobilite.routier.autoroutes",
+            href: "/mobilite/routier/autoroutes",
           },
-        
-            { labelKey: "politiquePrioritesStrategie2030", href: "/politique-etrangere/priorites/strategie-2030" },],
+          {
+            labelKey: "mobilite.routier.ouvragesArt",
+            href: "/mobilite/routier/ouvrages-d-art",
+          },
+          {
+            labelKey: "mobilite.routier.entretienRoutier",
+            href: "/mobilite/routier/entretien-routier",
+          },
+        ],
       },
       {
-        labelKey: "politiquePositionsOfficielles",
-        href: "/politique-etrangere/positions-officielles",
+        labelKey: "mobilite.ferroviaire.title",
+        href: "/mobilite/ferroviaire",
         links: [
           {
-            labelKey: "politiquePositionsDeclarations",
-            href: "/politique-etrangere/positions-officielles/declarations",
+            labelKey: "mobilite.ferroviaire.reseauFerroviaire",
+            href: "/mobilite/ferroviaire/reseau-ferroviaire",
           },
           {
-            labelKey: "politiquePositionsPrisesDePosition",
-            href: "/politique-etrangere/positions-officielles/prises-de-position",
+            labelKey: "mobilite.ferroviaire.gares",
+            href: "/mobilite/ferroviaire/gares",
           },
           {
-            labelKey: "politiquePositionsDocuments",
-            href: "/politique-etrangere/positions-officielles/documents",
+            labelKey: "mobilite.ferroviaire.transportFerroviaire",
+            href: "/mobilite/ferroviaire/transport-ferroviaire",
           },
-        
-            { labelKey: "politiquePositionsThemes", href: "/politique-etrangere/positions-officielles/themes" },],
+          {
+            labelKey: "mobilite.ferroviaire.modernisation",
+            href: "/mobilite/ferroviaire/modernisation",
+          },
+        ],
       },
       {
-        labelKey: "politiqueCooperationInternationale",
-        href: "/politique-etrangere/cooperation",
+        labelKey: "mobilite.transports.title",
+        href: "/mobilite/transports",
         links: [
           {
-            labelKey: "politiqueCooperationDeveloppement",
-            href: "/politique-etrangere/cooperation/developpement",
+            labelKey: "mobilite.transports.transportsPublics",
+            href: "/mobilite/transports/transports-publics",
           },
           {
-            labelKey: "politiqueCooperationHumanitaire",
-            href: "/politique-etrangere/cooperation/humanitaire",
+            labelKey: "mobilite.transports.mobiliteUrbaine",
+            href: "/mobilite/transports/mobilite-urbaine",
           },
           {
-            labelKey: "politiqueCooperationApd",
-            href: "/politique-etrangere/cooperation/apd",
+            labelKey: "mobilite.transports.mobiliteRegionale",
+            href: "/mobilite/transports/mobilite-regionale",
           },
-        
-            { labelKey: "politiqueCooperationPartenaires", href: "/politique-etrangere/cooperation/partenaires" },],
+          {
+            labelKey: "mobilite.transports.intermodalite",
+            href: "/mobilite/transports/intermodalite",
+          },
+        ],
       },
       {
-        labelKey: "politiqueDiplomatieEconomique",
-        href: "/politique-etrangere/diplomatie-economique",
+        labelKey: "mobilite.aerienMaritime.title",
+        href: "/mobilite/aerien-maritime",
         links: [
           {
-            labelKey: "politiqueEconomiqueInvestissements",
-            href: "/politique-etrangere/diplomatie-economique/investissements",
+            labelKey: "mobilite.aerienMaritime.aeroports",
+            href: "/mobilite/aerien-maritime/aeroports",
           },
           {
-            labelKey: "politiqueEconomiqueEntreprises",
-            href: "/politique-etrangere/diplomatie-economique/entreprises",
+            labelKey: "mobilite.aerienMaritime.ports",
+            href: "/mobilite/aerien-maritime/ports",
           },
           {
-            labelKey: "politiqueEconomiqueAmbassadeurs",
-            href: "/politique-etrangere/diplomatie-economique/ambassadeurs",
+            labelKey: "mobilite.aerienMaritime.transportMaritime",
+            href: "/mobilite/aerien-maritime/transport-maritime",
           },
-        
-            { labelKey: "politiqueEconomiqueFilieres", href: "/politique-etrangere/diplomatie-economique/filieres" },],
+          {
+            labelKey: "mobilite.aerienMaritime.transportAerien",
+            href: "/mobilite/aerien-maritime/transport-aerien",
+          },
+        ],
       },
     ],
   },
   {
     type: "megaMenu",
-    labelKey: "activiteDiplomatique",
-    href: sectionPaths.activiteDiplomatique,
+    labelKey: "numerique",
+    href: sectionPaths.numerique,
     leader: {
-      titleKey: "activiteTitle",
-      paragraphKey: "activiteText",
-      link: { labelKey: "activiteAllLink", href: sectionPaths.activiteDiplomatique },
+      titleKey: "numerique.title",
+      paragraphKey: "numerique.text",
+      link: {
+        labelKey: "numerique.allLink",
+        href: sectionPaths.numerique,
+      },
     },
     primaryItems: [
       {
-        labelKey: "activiteActualites",
-        href: "/activite-diplomatique/actualites",
+        labelKey: "numerique.connectivite.title",
+        href: "/numerique/connectivite",
         links: [
           {
-            labelKey: "activiteActualitesCommuniques",
-            href: "/activite-diplomatique/actualites/communiques",
+            labelKey: "numerique.connectivite.tresHautDebit",
+            href: "/numerique/connectivite/tres-haut-debit",
           },
           {
-            labelKey: "activiteActualitesCalendrier",
-            href: "/activite-diplomatique/actualites/calendrier",
+            labelKey: "numerique.connectivite.fibre",
+            href: "/numerique/connectivite/fibre",
           },
           {
-            labelKey: "activiteActualitesRevuePresse",
-            href: "/activite-diplomatique/actualites/revue-de-presse",
+            labelKey: "numerique.connectivite.reseauxMobiles",
+            href: "/numerique/connectivite/reseaux-mobiles",
           },
-        
-            { labelKey: "activiteActualitesBreves", href: "/activite-diplomatique/actualites/breves" },],
+          {
+            labelKey: "numerique.connectivite.couvertureTerritoriale",
+            href: "/numerique/connectivite/couverture-territoriale",
+          },
+        ],
       },
       {
-        labelKey: "activiteVisitesOfficielles",
-        href: "/activite-diplomatique/visites-officielles",
+        labelKey: "numerique.infrastructuresNumeriques.title",
+        href: "/numerique/infrastructures-numeriques",
         links: [
           {
-            labelKey: "activiteVisitesEtranger",
-            href: "/activite-diplomatique/visites-officielles/a-l-etranger",
+            labelKey: "numerique.infrastructuresNumeriques.dataCenters",
+            href: "/numerique/infrastructures-numeriques/data-centers",
           },
           {
-            labelKey: "activiteVisitesEnAstoria",
-            href: "/activite-diplomatique/visites-officielles/en-astoria",
+            labelKey: "numerique.infrastructuresNumeriques.cloudGouvernemental",
+            href: "/numerique/infrastructures-numeriques/cloud-gouvernemental",
           },
           {
-            labelKey: "activiteVisitesArchives",
-            href: "/activite-diplomatique/visites-officielles/archives",
+            labelKey: "numerique.infrastructuresNumeriques.reseauxPublics",
+            href: "/numerique/infrastructures-numeriques/reseaux-publics",
           },
-        
-            { labelKey: "activiteVisitesAVenir", href: "/activite-diplomatique/visites-officielles/a-venir" },],
+          {
+            labelKey: "numerique.infrastructuresNumeriques.hebergement",
+            href: "/numerique/infrastructures-numeriques/hebergement",
+          },
+        ],
       },
       {
-        labelKey: "activiteRencontresDiplomatiques",
-        href: "/activite-diplomatique/rencontres",
+        labelKey: "numerique.servicesPublics.title",
+        href: "/numerique/services-publics",
         links: [
           {
-            labelKey: "activiteRencontresBilaterales",
-            href: "/activite-diplomatique/rencontres/bilaterales",
+            labelKey: "numerique.servicesPublics.identiteNumerique",
+            href: "/numerique/services-publics/identite-numerique",
           },
           {
-            labelKey: "activiteRencontresMultilaterales",
-            href: "/activite-diplomatique/rencontres/multilaterales",
+            labelKey: "numerique.servicesPublics.interoperabilite",
+            href: "/numerique/services-publics/interoperabilite",
           },
           {
-            labelKey: "activiteRencontresConseils",
-            href: "/activite-diplomatique/rencontres/conseils",
+            labelKey: "numerique.servicesPublics.apiGouvernementales",
+            href: "/numerique/services-publics/api-gouvernementales",
           },
-        
-            { labelKey: "activiteRencontresSommets", href: "/activite-diplomatique/rencontres/sommets" },],
+          {
+            labelKey: "numerique.servicesPublics.plateformesPubliques",
+            href: "/numerique/services-publics/plateformes-publiques",
+          },
+        ],
       },
       {
-        labelKey: "activiteDeclarations",
-        href: "/activite-diplomatique/declarations",
+        labelKey: "numerique.donneesTechnologies.title",
+        href: "/numerique/donnees-technologies",
         links: [
           {
-            labelKey: "activiteDeclarationsMinistre",
-            href: "/activite-diplomatique/declarations/ministre",
+            labelKey: "numerique.donneesTechnologies.donneesPubliques",
+            href: "/numerique/donnees-technologies/donnees-publiques",
           },
           {
-            labelKey: "activiteDeclarationsConjointes",
-            href: "/activite-diplomatique/declarations/conjointes",
+            labelKey: "numerique.donneesTechnologies.intelligenceArtificielle",
+            href: "/numerique/donnees-technologies/intelligence-artificielle",
           },
-          { labelKey: "activiteDiscours", href: "/activite-diplomatique/discours" },
-        
-            { labelKey: "activiteDeclarationsPorteParole", href: "/activite-diplomatique/declarations/porte-parole" },],
+          {
+            labelKey: "numerique.donneesTechnologies.standardsNumeriques",
+            href: "/numerique/donnees-technologies/standards-numeriques",
+          },
+          {
+            labelKey: "numerique.donneesTechnologies.souveraineteTechnologique",
+            href: "/numerique/donnees-technologies/souverainete-technologique",
+          },
+        ],
       },
     ],
   },
   {
     type: "megaMenu",
-    labelKey: "leMinistere",
-    href: sectionPaths.ministere,
+    labelKey: "territoires",
+    href: sectionPaths.territoires,
     leader: {
-      titleKey: "ministereTitle",
-      paragraphKey: "ministereText",
-      link: { labelKey: "ministereAllLink", href: sectionPaths.ministere },
+      titleKey: "territoires.title",
+      paragraphKey: "territoires.text",
+      link: {
+        labelKey: "territoires.allLink",
+        href: sectionPaths.territoires,
+      },
     },
     primaryItems: [
       {
-        labelKey: "ministereMinistreCabinet",
-        href: "/ministere/ministre",
+        labelKey: "territoires.amenagement.title",
+        href: "/territoires/amenagement",
         links: [
-          { labelKey: "ministereMinistre", href: "/ministere/ministre/ministre" },
-          { labelKey: "ministereMinistreAgenda", href: "/ministere/ministre/agenda" },
-          { labelKey: "ministereMinistreEquipe", href: "/ministere/ministre/equipe" },
-        
-            { labelKey: "ministereMinistreDiscours", href: "/ministere/ministre/discours" },],
+          {
+            labelKey: "territoires.amenagement.amenagementTerritoire",
+            href: "/territoires/amenagement/amenagement-du-territoire",
+          },
+          {
+            labelKey: "territoires.amenagement.urbanisme",
+            href: "/territoires/amenagement/urbanisme",
+          },
+          {
+            labelKey: "territoires.amenagement.planification",
+            href: "/territoires/amenagement/planification-territoriale",
+          },
+          {
+            labelKey: "territoires.amenagement.developpementRegional",
+            href: "/territoires/amenagement/developpement-regional",
+          },
+        ],
       },
       {
-        labelKey: "ministereOrganisation",
-        href: "/ministere/organisation",
+        labelKey: "territoires.eau.title",
+        href: "/territoires/eau",
         links: [
-          { labelKey: "ministereOrganisationDirections", href: "/ministere/organisation/directions" },
-          { labelKey: "ministereOrganisationMissions", href: "/ministere/organisation/missions" },
-          { labelKey: "ministereOrganisationInstances", href: "/ministere/organisation/instances" },
-        
-            { labelKey: "ministereOrganisationOrganigramme", href: "/ministere/organisation/organigramme" },],
+          {
+            labelKey: "territoires.eau.gestionEau",
+            href: "/territoires/eau/gestion-de-l-eau",
+          },
+          {
+            labelKey: "territoires.eau.ressourcesHydriques",
+            href: "/territoires/eau/ressources-hydriques",
+          },
+          {
+            labelKey: "territoires.eau.distribution",
+            href: "/territoires/eau/distribution",
+          },
+          {
+            labelKey: "territoires.eau.preventionRisques",
+            href: "/territoires/eau/prevention-des-risques",
+          },
+        ],
       },
       {
-        labelKey: "ministereAmbassadesConsulats",
-        href: "/ministere/ambassades-consulats",
+        labelKey: "territoires.environnement.title",
+        href: "/territoires/environnement",
         links: [
           {
-            labelKey: "ministereReseauDiplomatique",
-            href: "/ministere/ambassades-consulats/reseau",
+            labelKey: "territoires.environnement.infrastructuresDurables",
+            href: "/territoires/environnement/infrastructures-durables",
           },
-          { labelKey: "ministereAmbassades", href: "/ministere/ambassades-consulats/ambassades" },
-          { labelKey: "ministereConsulats", href: "/ministere/ambassades-consulats/consulats" },
-        
-            { labelKey: "ministereCirconscriptionsConsulaires", href: "/ministere/ambassades-consulats/circonscriptions" },],
+          {
+            labelKey: "territoires.environnement.biodiversite",
+            href: "/territoires/environnement/biodiversite",
+          },
+          {
+            labelKey: "territoires.environnement.transitionTerritoriale",
+            href: "/territoires/environnement/transition-territoriale",
+          },
+          {
+            labelKey: "territoires.environnement.performanceEnvironnementale",
+            href: "/territoires/environnement/performance-environnementale",
+          },
+        ],
       },
       {
-        labelKey: "ministereMissionsPermanentes",
-        href: "/ministere/missions-permanentes",
+        labelKey: "territoires.resilience.title",
+        href: "/territoires/resilience",
         links: [
           {
-            labelKey: "ministereMissionsRepresentations",
-            href: "/ministere/missions-permanentes/representations",
+            labelKey: "territoires.resilience.resilienceTerritoriale",
+            href: "/territoires/resilience/resilience-territoriale",
           },
           {
-            labelKey: "ministereMissionsDelegations",
-            href: "/ministere/missions-permanentes/delegations",
+            labelKey: "territoires.resilience.risquesNaturels",
+            href: "/territoires/resilience/risques-naturels",
           },
           {
-            labelKey: "ministereMissionsParticipation",
-            href: "/ministere/missions-permanentes/participation",
+            labelKey: "territoires.resilience.continuiteServices",
+            href: "/territoires/resilience/continuite-des-services",
           },
-        
-            { labelKey: "ministereMissionsUE", href: "/ministere/missions-permanentes/union-europeenne" },],
+          {
+            labelKey: "territoires.resilience.infrastructuresCritiques",
+            href: "/territoires/resilience/infrastructures-critiques",
+          },
+        ],
       },
     ],
   },
@@ -583,10 +757,9 @@ export const primaryNavigation: ReadonlyArray<NavigationSection> = [
 
 /**
  * Secondary navigation zone of the site footer, distinct from the main
- * navigation of the header. Organised like an institutional footer, it
- * mirrors the six subjects of the header navigation and derives its links
- * from the themes of each section — so the footer and the header can never
- * drift apart.
+ * navigation of the header. It mirrors the six domains of the header
+ * navigation and derives its links from the themes of each section — so the
+ * footer and the header can never drift apart.
  *
  * Column titles resolve under `footer.columns`, links under `nav.panel`.
  */

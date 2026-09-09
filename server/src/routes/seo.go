@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/codegouvaor/diplomatie/server/src/models"
-	"github.com/codegouvaor/diplomatie/server/src/utils"
+	"github.com/codegouvaor/infrastructure/server/src/models"
+	"github.com/codegouvaor/infrastructure/server/src/utils"
 )
 
 func (h *apiHandler) listSeoConfigs(c *gin.Context) {

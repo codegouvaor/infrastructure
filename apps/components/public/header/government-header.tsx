@@ -26,10 +26,9 @@ const isNavItemActive = (href: string, pathname: string): boolean =>
 
 /**
  * Collect every href reachable from a navigation section (leader action,
- * primary destinations, secondary destinations) so the parent tab can be
- * marked active when the user lands on any child page — even if the child
- * href lives outside the parent's own path tree (e.g. /contact under
- * “Le Ministère”).
+ * themes and their destinations) so the parent tab can be marked active when
+ * the user lands on any child page — even if the child href lives outside the
+ * parent's own path tree.
  */
 function collectChildHrefs(section: NavigationSection): string[] {
   const hrefs: string[] = [section.leader.link.href];
@@ -41,33 +40,35 @@ function collectChildHrefs(section: NavigationSection): string[] {
 }
 
 /**
- * Government Header of the Ministry of Foreign Affairs of the Republic of
- * Astoria.
+ * Government Header of the Ministry of Infrastructure and Digital Affairs of
+ * the Republic of Astoria.
  *
- * Main navigation — the permanent information architecture of the diplomacy
- * portal, organised around the reference data of the foreign policy of the
- * Republic rather than generic website categories:
+ * Main navigation — the permanent information architecture of the portal,
+ * organised around the institutional perimeter of the ministry rather than
+ * generic website categories:
  *
- *   Relations extérieures  -> Comprendre : avec qui Astoria entretient-elle des relations ?
- *   Pays & territoires     -> Explorer : comment consulter les fiches du monde ?
- *   Accords & engagements  -> Consulter : quels traités et engagements ont été conclus ?
- *   Politique étrangère    -> Découvrir : quelles sont les positions officielles d'Astoria ?
- *   Activité diplomatique  -> Suivre : que fait la diplomatie astorienne actuellement ?
- *   Le Ministère           -> Connaître : comment fonctionne le Ministère et son réseau ?
+ *   Infrastructures  → Construire : normes, réseaux, patrimoine, grands projets
+ *   Logement         → Loger      : habitat, construction, rénovation, logement public
+ *   Énergie          → Alimenter  : électricité, réseaux, production, transition
+ *   Mobilité         → Relier     : routier, ferroviaire, transports, aérien & maritime
+ *   Numérique        → Numériser  : connectivité, infrastructures, services publics, données
+ *   Territoires      → Aménager   : aménagement, eau, environnement, résilience
  *
- * Each subject opens an institutional mega-menu (leader band with the section
- * description and its main action, plus four theme columns) that prepares the
- * diplomacy information graph — countries, treaties, visits, positions —
- * without overloading the header. MyGouv is not a seventh subject: it is the
- * citizen's authenticated identity and stays visually separated on the right
- * of the header as a distinct action.
+ * Each domain opens an institutional mega-menu (leader band with the domain
+ * description and its main action, plus four theme columns of four links) that
+ * covers the whole lifecycle of the infrastructure: conceive, plan, build,
+ * operate, maintain, modernise, make resilient.
  *
- * When the user is authenticated, the "MyGouv" link in the quick-access
- * toolbar is hidden and a custom account menu (`UserAccountMenu`) is
- * rendered instead. The menu content is driven by `siteAccountConfig` so each
- * site can present a different account interface without touching this
- * component. MyGouv remains the identity and authentication layer — the
- * diplomacy portal never duplicates it.
+ * The whole navigation is configuration-driven (`primaryNavigation` in
+ * `@/lib/site-structure`): the six domains open the panels, and nothing else
+ * competes with them in the header. The State's own infrastructure (government
+ * buildings, government cloud, telecommunications…) is deliberately not a
+ * seventh domain and has no dedicated entry in the header.
+ *
+ * The header behaviour (mega-menu opening on click, close on outside click and
+ * `Escape`, keyboard support, mobile drawer) is provided by the ADS runtime
+ * (`StartDsfrOnHydration`). When the user is authenticated the “MyGouv” link
+ * is hidden and a custom account menu (`UserAccountMenu`) is rendered instead.
  */
 export function GovernmentHeader() {
   const t = useTranslations();
@@ -123,10 +124,9 @@ export function GovernmentHeader() {
   const { isAuthenticated, isLoading: isAuthLoading } = useAuth();
 
   // Quick-access items — “MyGouv” is a transversal action: it points to the
-  // SSO identity layer when the user is not authenticated (the Parliament
-  // application never duplicates MyGouv's identity functionality), and is
-  // replaced by the account menu (with its personal-participation entries)
-  // once the user is authenticated.
+  // SSO identity layer when the user is not authenticated (the ministry portal
+  // never duplicates MyGouv's identity functionality), and is replaced by the
+  // account menu (with its personal entries) once the user is authenticated.
   const quickAccessItems = React.useMemo(() => {
     const items: HeaderProps.QuickAccessItem[] = [];
 
